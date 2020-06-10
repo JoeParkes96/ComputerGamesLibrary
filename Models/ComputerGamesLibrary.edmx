@@ -13,7 +13,7 @@
           <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Genre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="YearPublished" Type="int" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
@@ -24,7 +24,7 @@
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="HashedPassword" Type="varchar" MaxLength="70" Nullable="false" />
         </EntityType>
-        <Association Name="FK__UserCompu__UserI__72C60C4A">
+        <Association Name="FK__UserCompu__UserI__05D8E0BE">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="UserComputerGames" Type="Self.UserComputerGames" Multiplicity="*" />
           <ReferentialConstraint>
@@ -39,7 +39,7 @@
         <EntityContainer Name="ComputerGamesLibraryModelStoreContainer">
           <EntitySet Name="UserComputerGames" EntityType="Self.UserComputerGames" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__UserCompu__UserI__72C60C4A" Association="Self.FK__UserCompu__UserI__72C60C4A">
+          <AssociationSet Name="FK__UserCompu__UserI__05D8E0BE" Association="Self.FK__UserCompu__UserI__05D8E0BE">
             <End Role="Users" EntitySet="Users" />
             <End Role="UserComputerGames" EntitySet="UserComputerGames" />
           </AssociationSet>
@@ -57,9 +57,9 @@
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="YearPublished" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK__UserCompu__UserI__72C60C4A" FromRole="UserComputerGames" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserCompu__UserI__05D8E0BE" FromRole="UserComputerGames" ToRole="Users" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -68,9 +68,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HashedPassword" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="UserComputerGames" Relationship="Self.FK__UserCompu__UserI__72C60C4A" FromRole="Users" ToRole="UserComputerGames" />
+          <NavigationProperty Name="UserComputerGames" Relationship="Self.FK__UserCompu__UserI__05D8E0BE" FromRole="Users" ToRole="UserComputerGames" />
         </EntityType>
-        <Association Name="FK__UserCompu__UserI__72C60C4A">
+        <Association Name="FK__UserCompu__UserI__05D8E0BE">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="UserComputerGames" Type="Self.UserComputerGame" Multiplicity="*" />
           <ReferentialConstraint>
@@ -85,7 +85,7 @@
         <EntityContainer Name="ComputerGamesLibraryContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="UserComputerGames" EntityType="Self.UserComputerGame" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__UserCompu__UserI__72C60C4A" Association="Self.FK__UserCompu__UserI__72C60C4A">
+          <AssociationSet Name="FK__UserCompu__UserI__05D8E0BE" Association="Self.FK__UserCompu__UserI__05D8E0BE">
             <End Role="Users" EntitySet="Users" />
             <End Role="UserComputerGames" EntitySet="UserComputerGames" />
           </AssociationSet>

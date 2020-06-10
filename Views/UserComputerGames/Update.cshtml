@@ -1,0 +1,28 @@
+﻿@model ComputerGamesLibrary.Models.UserComputerGame
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+<form asp-controller="UserComputerGames" asp-action="Update" method="post" role="form">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.UserId)
+
+        @Html.Partial("_UserComputerGameInputForm")
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
