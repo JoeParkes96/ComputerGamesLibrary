@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -12,7 +13,7 @@ namespace ComputerGamesLibrary.Controllers
         private ComputerGamesLibraryContext db = new ComputerGamesLibraryContext();
 
         // GET: UserComputerGames
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string gameGenre, int? selectedYear, decimal? fromPrice, decimal? toPrice)
         {
             // Upon login set the userId for use throughout
             int currentUserId = (int)Session["CurrentUserId"];
@@ -21,7 +22,9 @@ namespace ComputerGamesLibrary.Controllers
             var userComputerGames = db.UserComputerGames
                 .Where(game => game.User.ID == currentUserId);
 
-            return View(userComputerGames.ToList());
+            UserComputerGamesViewModel viewModel = BuildViewModel(userComputerGames, searchString, gameGenre, selectedYear, fromPrice, toPrice);
+
+            return View(viewModel);
         }
 
         // GET: UserComputerGames/Add
@@ -101,6 +104,58 @@ namespace ComputerGamesLibrary.Controllers
             db.UserComputerGames.Remove(userComputerGame);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private UserComputerGamesViewModel BuildViewModel(IQueryable<UserComputerGame> userComputerGames, string searchString, string gameGenre, int? selectedYear, decimal? fromPrice, decimal? toPrice)
+        {
+            List<string> distinctGenres = userComputerGames
+                .OrderBy(game => game.Genre)
+                .Select(game => game.Genre)
+                .Distinct()
+                .ToList();
+
+            List<int> distinctYears = userComputerGames
+                .OrderBy(game => game.YearPublished)
+                .Select(game => game.YearPublished)
+                .Distinct()
+                .ToList();
+
+            if (fromPrice > toPrice)
+            {
+                ModelState.AddModelError("", "From price cannot be greater than To price");
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    userComputerGames = userComputerGames.Where(game => game.Title.Contains(searchString));
+                }
+
+                if (!string.IsNullOrEmpty(gameGenre))
+                {
+                    userComputerGames = userComputerGames.Where(game => game.Genre == gameGenre);
+                }
+
+                if (selectedYear != null)
+                {
+                    userComputerGames = userComputerGames.Where(game => game.YearPublished == selectedYear);
+                }
+
+                if (fromPrice != null && toPrice != null)
+                {
+                    userComputerGames = userComputerGames.Where(game => game.Price >= fromPrice)
+                        .Where(game => game.Price <= toPrice);
+                }
+            }
+
+            UserComputerGamesViewModel viewModel = new UserComputerGamesViewModel
+            {
+                Genres = new SelectList(distinctGenres),
+                Years = new SelectList(distinctYears),
+                Games = userComputerGames.ToList()
+            };
+
+            return viewModel;
         }
 
         protected override void Dispose(bool disposing)

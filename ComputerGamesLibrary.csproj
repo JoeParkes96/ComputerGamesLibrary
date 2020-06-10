@@ -159,6 +159,7 @@
     <Compile Include="Models\UserComputerGame.cs">
       <DependentUpon>ComputerGamesLibrary.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserComputerGamesViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
