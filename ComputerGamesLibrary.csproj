@@ -134,7 +134,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserComputerGamesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -175,11 +175,15 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Shared\_UsernamePasswordInputs.cshtml" />
     <Content Include="Views\Accounts\Register.cshtml" />
+    <Content Include="Views\UserComputerGames\Add.cshtml" />
+    <Content Include="Views\UserComputerGames\Delete.cshtml" />
+    <Content Include="Views\UserComputerGames\Update.cshtml" />
+    <Content Include="Views\UserComputerGames\Index.cshtml" />
+    <Content Include="Views\Shared\_UserComputerGameInputForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

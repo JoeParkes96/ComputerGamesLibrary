@@ -35,8 +35,9 @@ namespace ComputerGamesLibrary.Controllers
 
                     if (isUserValid)
                     {
-                        FormsAuthentication.SetAuthCookie(userModel.Username, false);
-                        return RedirectToAction("Index", "Users");
+                        FormsAuthentication.SetAuthCookie(foundUser.ID.ToString(), false);
+                        Session["CurrentUserId"] = foundUser.ID;
+                        return RedirectToAction("Index", "UserComputerGames");
                     }
                     else
                     {
@@ -81,7 +82,7 @@ namespace ComputerGamesLibrary.Controllers
                     context.SaveChanges();
                 }
 
-                return RedirectToAction("Index", "Users");
+                return RedirectToAction("Login", "Accounts");
             }
             else
             {
@@ -91,6 +92,7 @@ namespace ComputerGamesLibrary.Controllers
 
         public ActionResult Logout()
         {
+            Session.Clear();
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }

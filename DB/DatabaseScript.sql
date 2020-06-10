@@ -15,7 +15,7 @@ CREATE TABLE UserComputerGames (
     Title VARCHAR(100) NOT NULL,
     Genre VARCHAR(50) NOT NULL,
     YearPublished INT NOT NULL,
-    Price INT NOT NULL,
+    Price MONEY NOT NULL,
     UserId INT NOT NULL
 );
 

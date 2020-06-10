@@ -11,14 +11,24 @@ namespace ComputerGamesLibrary.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class UserComputerGame
     {
         public int ID { get; set; }
+
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Genre { get; set; }
+
+        [Required]
+        [Display(Name ="Year Published")]
         public int YearPublished { get; set; }
-        public int Price { get; set; }
+
+        [Required]
+        public decimal Price { get; set; }
         public int UserId { get; set; }
     
         public virtual User User { get; set; }
