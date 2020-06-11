@@ -1,0 +1,32 @@
+﻿.filter-form-group {
+    margin-right: 10px;
+}
+
+/* Position label above input */
+.filter-form-group > label {
+    display: block;
+}
+
+.pricerange-form-group {
+    width: 200px;
+}
+
+.price-input {
+    width: 40% !important;
+}
+
+.genre-dropdown {
+    max-width: 120px;
+}
+
+.year-dropdown {
+    max-width: 80px;
+}
+
+.filter-button {
+    margin-right: 10px;
+}
+
+.form-controls-group {
+    margin-top: 25px;
+}

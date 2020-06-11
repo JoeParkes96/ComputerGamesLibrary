@@ -1,4 +1,7 @@
-﻿body {
+﻿@import './Accounts/login_register.css';
+@import './UserComputerGames/index.css';
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -7,6 +10,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 20px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -16,3 +20,75 @@ textarea {
     max-width: 280px;
 }
 
+/* Navbar styling */
+.navbar {
+    background-color: #37B6B6;
+    display: flex;
+    align-items: center;
+}
+
+.app-title {
+    margin-left: 20px;
+}
+
+.navbar-title {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.logout-container {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+/* Rows used across the site */
+.row {
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.logout-button {
+    background-color: white;
+    color: #37B6B6;
+}
+.default-button {
+    background-color: #37B6B6;
+    color: white;
+}
+
+.default-button:hover {
+    background-color: white;
+    color: #37B6B6;
+    border-color: #37B6B6;
+}
+
+.delete-button {
+    background-color: #C7332F;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: white;
+    color: #C7332F;
+    border-color: #C7332F;
+}
+
+/* Links */
+.link-text {
+    color: darkgray
+}
+
+.link-text:hover {
+    color: grey;
+}
+
+/* Validation*/
+.text-danger {
+    display: block;
+}
+
+.validation-summary-errors > ul {
+    list-style: none;
+    padding: 0;
+}

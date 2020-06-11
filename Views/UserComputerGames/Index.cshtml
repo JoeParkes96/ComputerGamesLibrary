@@ -4,39 +4,39 @@
     ViewBag.Title = "Computer Games Library";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Add New", "Add")
-</p>
-
-<form asp-controller="UserComputerGames" asp-action="Index" method="get">
-    <div class="form-actions no-color">
-        <div>
-            <span>Genre</span>
-            @Html.DropDownListFor(model => model.GameGenre, Model.Genres, "All")
+<div class="row">
+    <form asp-controller="UserComputerGames" asp-action="Index" method="get" class="form-inline">
+        <div class="form-group filter-form-group">
+            <label>Genre</label>
+            @Html.DropDownListFor(model => model.GameGenre, Model.Genres, "All", new { @class = "form-control genre-dropdown" })
         </div>
-        <div>
-            <span>Year</span>
-            @Html.DropDownListFor(model => model.SelectedYear, Model.Years, "All")
+        <div class="form-group filter-form-group">
+            <label>Year</label>
+            @Html.DropDownListFor(model => model.SelectedYear, Model.Years, "All", new { @class = "form-control year-dropdown" })
         </div>
-        <div>
-            <span>Title</span>
+        <div class="form-group filter-form-group">
+            <label>Title</label>
             @Html.EditorFor(model => model.SearchString, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.SearchString, "", new { @class = "text-danger" })
         </div>
-        <div>
-            <span>Price Range</span>
-            <span>From</span>
-            @Html.EditorFor(model => model.FromPrice, new { htmlAttributes = new { @class = "form-control" } })
-            <span>To</span>
-            @Html.EditorFor(model => model.ToPrice, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group filter-form-group pricerange-form-group">
+            <label>Price Range</label>
+            @Html.EditorFor(model => model.FromPrice, new { htmlAttributes = new { @class = "form-control price-input" } })
+            <span>-</span>
+            @Html.EditorFor(model => model.ToPrice, new { htmlAttributes = new { @class = "form-control price-input" } })
         </div>
-        <input type="submit" value="Filter" />
-        @Html.ActionLink("Reset", "Index")
-        
-    </div>
-</form>
+        <div class="form-group form-controls-group">
+            <input type="submit" value="Filter" class="btn default-button filter-button" />
+            @Html.ActionLink("Reset", "Index", null, new { @class = "link-text" })
+        </div>
+    </form>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+</div>
+
+<div class="row">
+    @Html.ActionLink("Add New", "Add", null, new { @class = "btn default-button" })
+</div>
+
 
 <table class="table">
     <tr>
@@ -70,8 +70,8 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Update", "Update", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Update", "Update", new { id=item.ID }, new { @class = "btn default-button" })
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { @class = "btn delete-button" })
         </td>
     </tr>
 }

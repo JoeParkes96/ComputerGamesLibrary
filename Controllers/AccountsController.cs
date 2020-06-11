@@ -92,8 +92,9 @@ namespace ComputerGamesLibrary.Controllers
 
         public ActionResult Logout()
         {
-            Session.Clear();
             FormsAuthentication.SignOut();
+            Session.Abandon();
+            
             return RedirectToAction("Login");
         }
 

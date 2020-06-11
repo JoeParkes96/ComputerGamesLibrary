@@ -1,0 +1,17 @@
+﻿.login-container, .register-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.login-button-container, .register-button-container {
+    margin-bottom: 10px;
+}
+
+.username-row, .password-row {
+    color: grey;
+    font-size: 1.25em;
+}
+
+.model-validation-row {
+    font-size: 1.25em;
+}
