@@ -19,3 +19,13 @@ If this occurs, in web.config please remove the following code and the applicati
 </system.codedom>
 
 If you encounter any issues please contact me.
+
+
+
+As requested this is an ASP.NET MVC application using Forms Authentication. I made use of the HTML Helpers available in MVC to make the data binding as effective as possible. Data annotations were very useful for validation. Bootstrap was used for styling as it is simple but effective whilst also being a CSS framework I am familiar with.
+
+The application enables users to register and sign in with their credentials. Once they are logged in they can add new computer games to their library, these will be displayed on the main page. Created game entries can then be updated or deleted. Finally, a users library can be filtered by searching for a title, selecting a genre and/or year from a dynamic list (which is populated with all the distinct entries for these fields) or specifying a price range.
+
+Future feature additions I would make to this application would be: 
+- Allowing users to create and update a list of genres that can be chosen when adding a new game entry
+- Auto apply the filter on every change to the search string or dropdown list selection
