@@ -5,7 +5,9 @@
 
 <div class="register-container">
     <form asp-controller="Account" asp-action="Register" method="post" role="form">
+
         @Html.Partial("_UsernamePasswordInputs")
+
         <div class="register-button-container">
             <input type="submit" value="Register" class="btn default-button" />
         </div>

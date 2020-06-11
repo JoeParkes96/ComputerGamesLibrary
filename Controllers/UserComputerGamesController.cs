@@ -13,7 +13,11 @@ namespace ComputerGamesLibrary.Controllers
         private ComputerGamesLibraryContext db = new ComputerGamesLibraryContext();
 
         // GET: UserComputerGames
-        public ActionResult Index(string searchString, string gameGenre, int? selectedYear, decimal? fromPrice, decimal? toPrice)
+        public ActionResult Index(string searchString,
+            string gameGenre,
+            int? selectedYear,
+            decimal? fromPrice,
+            decimal? toPrice)
         {
             // Upon login set the userId for use throughout
             int currentUserId = (int)Session["CurrentUserId"];
@@ -22,15 +26,20 @@ namespace ComputerGamesLibrary.Controllers
             var userComputerGames = db.UserComputerGames
                 .Where(game => game.User.ID == currentUserId);
 
-            UserComputerGamesViewModel viewModel = BuildViewModel(userComputerGames, searchString, gameGenre, selectedYear, fromPrice, toPrice);
+            UserComputerGamesViewModel viewModel = BuildViewModel(userComputerGames,
+                searchString,
+                gameGenre,
+                selectedYear,
+                fromPrice,
+                toPrice);
 
-            return View(viewModel);
+            return View("Index", viewModel);
         }
 
         // GET: UserComputerGames/Add
         public ActionResult Add()
         {
-            return View();
+            return View("Add");
         }
 
         // POST: UserComputerGames/Add
@@ -46,7 +55,7 @@ namespace ComputerGamesLibrary.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(userComputerGame);
+            return View("Add", userComputerGame);
         }
 
         // GET: UserComputerGames/Update/5
@@ -56,13 +65,15 @@ namespace ComputerGamesLibrary.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             UserComputerGame userComputerGame = db.UserComputerGames.Find(id);
+
             if (userComputerGame == null)
             {
                 return HttpNotFound();
             }
            
-            return View(userComputerGame);
+            return View("Update", userComputerGame);
         }
 
         // POST: UserComputerGames/Update/5
@@ -74,10 +85,11 @@ namespace ComputerGamesLibrary.Controllers
             {
                 db.Entry(userComputerGame).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             
-            return View(userComputerGame);
+            return View("Update", userComputerGame);
         }
 
         // GET: UserComputerGames/Delete/5
@@ -92,7 +104,8 @@ namespace ComputerGamesLibrary.Controllers
             {
                 return HttpNotFound();
             }
-            return View(userComputerGame);
+
+            return View("Delete", userComputerGame);
         }
 
         // POST: UserComputerGames/Delete/5
@@ -103,6 +116,7 @@ namespace ComputerGamesLibrary.Controllers
             UserComputerGame userComputerGame = db.UserComputerGames.Find(id);
             db.UserComputerGames.Remove(userComputerGame);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

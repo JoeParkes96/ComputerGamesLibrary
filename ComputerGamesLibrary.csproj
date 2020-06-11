@@ -155,6 +155,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ComputerGamesLibrary.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>ComputerGamesLibrary.tt</DependentUpon>
     </Compile>
