@@ -2,15 +2,14 @@
     ViewBag.Title = "Login";
 }
 
-<div>
-    <h1>Login</h1>
+<div class="login-container">
     <form asp-controller="Account" asp-action="Login" method="post" role="form">
         @Html.Partial("_UsernamePasswordInputs")
-        <div>
-            <input type="submit" value="Login" class="btn btn-default" />
+        <div class="login-button-container">
+            <input type="submit" value="Login" class="btn default-button" />
         </div>
         <div>
-            @Html.ActionLink("Not registered? Register here", "Register")
+            @Html.ActionLink("Not registered? Register here", "Register", null, new { @class = "link-text" })
         </div>
     </form>
 </div>

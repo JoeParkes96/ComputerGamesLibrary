@@ -46,9 +46,11 @@
     <form asp-controller="UserComputerGames" asp-action="DeleteConfirmed" method="post" role="form">
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
-            @Html.ActionLink("Back to List", "Index")
+        <div>
+            <input type="submit" value="Delete" class="btn delete-button" />
         </div>
     </form>
+    <div>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "link-text" })
+    </div>
 </div>
