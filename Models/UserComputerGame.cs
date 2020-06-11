@@ -17,22 +17,24 @@ namespace ComputerGamesLibrary.Models
         public int ID { get; set; }
 
         [Required]
-        [MinLength(3, ErrorMessage ="Title must be greater than 3 characters")]
-        [MaxLength(100, ErrorMessage ="Title must be less than 100 characters")]
+        [MinLength(Constants.MIN_STRING_LENGTH, ErrorMessage ="Title must be greater than 3 characters")]
+        [MaxLength(Constants.MAX_NAME_LENGTH, ErrorMessage ="Title must be less than 100 characters")]
         public string Title { get; set; }
 
         [Required]
-        [MinLength(3, ErrorMessage ="Genre must be greater than 3 characters")]
-        [MaxLength(50, ErrorMessage ="Genre must be less than 50 characters")]
+        [MinLength(Constants.MIN_STRING_LENGTH, ErrorMessage ="Genre must be greater than 3 characters")]
+        [MaxLength(Constants.MAX_GENRE_LENGTH, ErrorMessage ="Genre must be less than 50 characters")]
         public string Genre { get; set; }
 
         [Required]
         [Display(Name ="Year Published")]
+        [Range(0, Constants.UPPER_YEAR_LIMIT, ErrorMessage ="Year cannot be negative or greater than 4 digits")]
         [RegularExpression(@"^(\d{4})$", ErrorMessage = "Enter a valid 4 digit Year")]
         public int YearPublished { get; set; }
 
         [Required]
         [Display(Name = "Price (£)")]
+        [Range(0, double.MaxValue, ErrorMessage = "Price cannot be negative")]
         [Column(TypeName ="decimal(18,2)")]
         public decimal Price { get; set; }
         public int UserId { get; set; }

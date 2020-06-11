@@ -30,6 +30,8 @@
             @Html.ActionLink("Reset", "Index", null, new { @class = "link-text" })
         </div>
     </form>
+    @Html.ValidationMessageFor(model => model.FromPrice, "", new { @class = "text-danger" })
+    @Html.ValidationMessageFor(model => model.ToPrice, "", new { @class = "text-danger" })
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 </div>
 

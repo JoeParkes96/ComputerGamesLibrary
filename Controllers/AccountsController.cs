@@ -8,15 +8,9 @@ namespace ComputerGamesLibrary.Controllers
 {
     public class AccountsController : Controller
     {
-        // GET: Accounts
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Login()
         {
-            return View();
+            return View("Login");
         }
 
         [HttpPost]
@@ -42,7 +36,7 @@ namespace ComputerGamesLibrary.Controllers
                     else
                     {
                         ModelState.AddModelError("", "User credentials are incorrect");
-                        return View();
+                        return View("Login");
                     }
                 }
             }
@@ -54,7 +48,7 @@ namespace ComputerGamesLibrary.Controllers
 
         public ActionResult Register()
         {
-            return View();
+            return View("Register");
         }
 
         [HttpPost]
@@ -63,7 +57,7 @@ namespace ComputerGamesLibrary.Controllers
             if (IsUsernameTaken(userModel.Username))
             {
                 ModelState.AddModelError("", "Username is taken");
-                return View();
+                return View("Register");
             }
 
             if (ValidateInputs(userModel))
@@ -86,7 +80,7 @@ namespace ComputerGamesLibrary.Controllers
             }
             else
             {
-                return View(userModel);
+                return View("Register", userModel);
             }
         }
 
@@ -100,8 +94,13 @@ namespace ComputerGamesLibrary.Controllers
 
         private bool ValidateInputs(UserModel userModel)
         {
-            bool usernameInputIsValid = !(string.IsNullOrEmpty(userModel.Username));
-            bool passwordInputIsValid = !(string.IsNullOrEmpty(userModel.Password));
+            bool usernameInputIsValid = !(string.IsNullOrEmpty(userModel.Username)) 
+                && userModel.Username.Length > Constants.MIN_STRING_LENGTH
+                && userModel.Username.Length < Constants.MAX_NAME_LENGTH;
+
+            bool passwordInputIsValid = !(string.IsNullOrEmpty(userModel.Password))
+                && userModel.Password.Length > Constants.MIN_PASSWORD_LENGTH
+                && userModel.Password.Length < Constants.MAX_PASSWORD_LENGTH;
 
             return usernameInputIsValid && passwordInputIsValid;
         }
