@@ -10,5 +10,6 @@
         public const int MAX_USERNAME_LENGTH = 50;
         public const int MIN_PASSWORD_LENGTH = 5;
         public const int MAX_PASSWORD_LENGTH = 50;
+        public const double MAX_PRICE = 9999999999999999.99;
     }
 }
