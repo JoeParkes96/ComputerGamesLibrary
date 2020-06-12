@@ -16,9 +16,11 @@ namespace ComputerGamesLibrary.Models
        [StringLength(Constants.MAX_NAME_LENGTH, ErrorMessage ="Search string can't exceed 100 characters")]
         public string SearchString { get; set; }
 
+        [Range(0, Constants.MAX_PRICE, ErrorMessage = "Price cannot be negative or greater than 18 digits")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal? FromPrice { get; set; }
 
+        [Range(0, Constants.MAX_PRICE, ErrorMessage = "Price cannot be negative or greater than 18 digits")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal? ToPrice { get; set; }
     }

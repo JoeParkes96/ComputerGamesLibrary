@@ -47,7 +47,7 @@ namespace ComputerGamesLibrary.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add([Bind(Include = "Title,Genre,YearPublished,Price,UserId")] UserComputerGame userComputerGame)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && ValidateUserComputerGame(userComputerGame))
             {
                 userComputerGame.UserId = (int)Session["CurrentUserId"];
                 db.UserComputerGames.Add(userComputerGame);
@@ -81,7 +81,7 @@ namespace ComputerGamesLibrary.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Update([Bind(Include = "ID,Title,Genre,YearPublished,Price,UserId")] UserComputerGame userComputerGame)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && ValidateUserComputerGame(userComputerGame))
             {
                 db.Entry(userComputerGame).State = EntityState.Modified;
                 db.SaveChanges();
@@ -138,7 +138,7 @@ namespace ComputerGamesLibrary.Controllers
             {
                 ModelState.AddModelError("", "From price cannot be greater than To price");
             }
-            else
+            else if (ModelState.IsValid)
             {
                 if (!string.IsNullOrEmpty(searchString))
                 {
@@ -170,6 +170,20 @@ namespace ComputerGamesLibrary.Controllers
             };
 
             return viewModel;
+        }
+
+        private bool ValidateUserComputerGame(UserComputerGame game)
+        {
+            bool isTitleValid = game.Title.Length > Constants.MIN_STRING_LENGTH 
+                && game.Title.Length < Constants.MAX_NAME_LENGTH;
+            bool isGenreValid = game.Genre.Length > Constants.MIN_STRING_LENGTH 
+                && game.Genre.Length < Constants.MAX_GENRE_LENGTH;
+            bool isYearValid = game.YearPublished > 0 
+                && game.YearPublished < Constants.UPPER_YEAR_LIMIT;
+            bool isPriceValid = game.Price > 0 
+                && game.Price < decimal.MaxValue;
+
+            return isTitleValid && isGenreValid && isYearValid && isPriceValid;
         }
 
         protected override void Dispose(bool disposing)

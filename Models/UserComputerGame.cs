@@ -17,13 +17,13 @@ namespace ComputerGamesLibrary.Models
         public int ID { get; set; }
 
         [Required]
-        [MinLength(Constants.MIN_STRING_LENGTH, ErrorMessage ="Title must be greater than 3 characters")]
-        [MaxLength(Constants.MAX_NAME_LENGTH, ErrorMessage ="Title must be less than 100 characters")]
+        [MinLength(Constants.MIN_STRING_LENGTH, ErrorMessage = "Title must be 3 characters or more")]
+        [MaxLength(Constants.MAX_NAME_LENGTH, ErrorMessage ="Title must be 100 characters or less")]
         public string Title { get; set; }
 
         [Required]
-        [MinLength(Constants.MIN_STRING_LENGTH, ErrorMessage ="Genre must be greater than 3 characters")]
-        [MaxLength(Constants.MAX_GENRE_LENGTH, ErrorMessage ="Genre must be less than 50 characters")]
+        [MinLength(Constants.MIN_STRING_LENGTH, ErrorMessage ="Genre must be 3 characters or more")]
+        [MaxLength(Constants.MAX_GENRE_LENGTH, ErrorMessage ="Genre must 50 characters or less")]
         public string Genre { get; set; }
 
         [Required]
@@ -34,7 +34,7 @@ namespace ComputerGamesLibrary.Models
 
         [Required]
         [Display(Name = "Price (£)")]
-        [Range(0, double.MaxValue, ErrorMessage = "Price cannot be negative")]
+        [Range(0, Constants.MAX_PRICE, ErrorMessage = "Price cannot be negative or greater than 18 digits")]
         [Column(TypeName ="decimal(18,2)")]
         public decimal Price { get; set; }
         public int UserId { get; set; }
